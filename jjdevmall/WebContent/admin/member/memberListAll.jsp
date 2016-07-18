@@ -28,20 +28,29 @@
 	String dbUser = "root";
 	String dbPass = "java0000";
 	
+	String sessionId = null;
+	sessionId = (String)session.getAttribute("memberId");
+	
 	Connection conn = null;
 	PreparedStatement pstmt1 = null;
 	ResultSet rs = null;
 	
 	try{
+		
 		//드라이버로딩
 		Class.forName(driver);
 		//DB연결
 		conn = DriverManager.getConnection(url, dbUser, dbPass);
-		
+		String listSql = null;
 		//회원정보 insert쿼리 문장
-		String listSql = "SELECT member_no, member_id, member_pw, member_name, member_gender, member_age FROM member";
-		
-		pstmt1 = conn.prepareStatement(listSql);
+		if(sessionId == null){
+			listSql = "SELECT member_no, member_id, member_pw, member_name, member_gender, member_age FROM member";
+			pstmt1 = conn.prepareStatement(listSql);
+		}else{
+			listSql = "SELECT member_no, member_id, member_pw, member_name, member_gender, member_age FROM member WHERE member_id=?";
+			pstmt1 = conn.prepareStatement(listSql);
+			pstmt1.setString(1, sessionId);
+		}
 		
 		
 		rs = pstmt1.executeQuery();
@@ -89,7 +98,7 @@
 				<td><%=memberName %></td>
 				<td><%=memberGender %></td>
 				<td><%=memberAge %></td>
-				<td><a href="">주소등록</a></td>
+				<td><a href="<%=request.getContextPath()%>/admin/member/memberAdd">주소등록</a></td>
 			</tr>
 <%
 		}
