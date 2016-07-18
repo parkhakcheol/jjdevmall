@@ -31,7 +31,7 @@
 				$('#nameHelper').text('');
 				$('#priceHelper').text('상품가격은 숫자로만 또는 공백이면 안됩니다.');
 				$('#itemPrice').focus();
-			}else if(isNaN($('#itemRate').val()) || $('#itemRate').val()==''){
+			}else if(isNaN($('#itemRate').val()) || $('#itemRate').val()=='' || Number($('#itemRate').val()) > 0){
 				$('#priceHelper').text('');
 				$('#rateHelper').text('할인율은 숫자로만 또는 공백이면 안됩니다.');
 				$('#itemRate').focus();
