@@ -25,14 +25,16 @@
 	
 	Connection conn = null;
 	
-	//드라이버로딩
+	
 	try{
+		//드라이버로딩
 		Class.forName(driver);
 		//DB연결
 		conn = DriverManager.getConnection(url, dbUser, dbPass);
 		conn.setAutoCommit(false); //트랜잭션
-		
+		//회원정보 insert쿼리 문장
 		String memberSql = "INSERT INTO member(member_id, member_pw, member_name, member_gender, member_age)VALUES(?,?,?,?,?)";
+		
 		PreparedStatement pstmt1 = conn.prepareStatement(memberSql, Statement.RETURN_GENERATED_KEYS);
 		pstmt1.setString(1, memberId);
 		pstmt1.setString(2, memberPw);
@@ -43,22 +45,24 @@
 		int result = pstmt1.executeUpdate();
 		System.out.println(pstmt1);
 		
-		
+		//회원정보가 잘입력되었다면
 		if(result != 0)
 		{	
+			//마지막 회원번호를 받아와
 			ResultSet rs = pstmt1.getGeneratedKeys();
 			
 			int key = 0;
 			if(rs.next()){
 				key = rs.getInt(1);
 			}
+			//회원번호와 주소를 입력
 			String addressSql = "INSERT INTO address(member_no, member_address)VALUES(?,?)";
 			PreparedStatement pstmt2 = conn.prepareStatement(addressSql);
-			//pstmt2.setInt(1, key);
+			pstmt2.setInt(1, key);
 			pstmt2.setString(2, memberAddr);
 			System.out.println(pstmt2);
 			result = pstmt2.executeUpdate();
-			
+			//정상처리 되었다면 커밋
 			if(result != 0){
 				conn.commit();
 				out.print("<h1>회원등록 완료!</h1>");

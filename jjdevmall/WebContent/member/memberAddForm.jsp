@@ -22,24 +22,31 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
+		$('#memberId').focus();
 		$('#addBtn').click(function(){
 			if($('#memberId').val() == ''){
 				$('#idHelper').text('등록하실 아이디를 입력하세요');
+				$('#memberId').focus();
 			}else if($('#memberPw').val() == ''){
 				$('#idHelper').text('');
 				$('#pwHelper').text('비밀번호가 공백입니다.');
+				$('#memberPw').focus();
 			}else if($('#memberName').val() == ''){
 				$('#pwHelper').text('');
 				$('#nameHelper').text('이름을 입력하세요.');
+				$('#memberName').focus();
 			}else if($('.memberGender:checked').length == 0){
 				$('#nameHelper').text('');
 				$('#genderHelper').text('성별을 선택하세요.');
+				$('.memberGender').focus();
 			}else if(isNaN($('#memberAge').val()) || $('#memberAge').val()==''){
 				$('#genderHelper').text('');
 				$('#ageHelper').text('나이는 숫자만! 또는 공백이면 안됩니다.');
+				$('#memberAge').focus();
 			}else if($('#memberAddr').val()==''){
 				$('#ageHelper').text('');
 				$('#addrHelper').text('주소를 입력하세요.');
+				$('#memberAddr').focus();
 			}else{
 				$('#addrHelper').text('');
 				$('#memberForm').submit();
