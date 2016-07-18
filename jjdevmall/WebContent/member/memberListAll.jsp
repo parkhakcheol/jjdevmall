@@ -3,6 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	table, td, th
+	{
+		border: 1px solid #000000;
+	}
+	div
+	{
+		width: 50%;
+		height: 50px;
+		margin: 0 auto;
+		padding-top: 20px;
+	}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
@@ -35,16 +48,21 @@
 		System.out.println(pstmt1);
 		
 		//html태그 사용 회원정보를 테이블에 출력
-		out.print("<table border=1>");
-		out.print("<tr>");
-		out.print("<th>회원번호</th>");
-		out.print("<th>회원ID</th>");
-		out.print("<th>회원PW</th>");
-		out.print("<th>회원이름</th>");
-		out.print("<th>회원성별</th>");
-		out.print("<th>회원나이</th>");
-		out.print("<th>주소등록</th>");
-		out.print("</tr>");
+%>
+		<div>
+		<h1>회원 리스트</h1>
+			<table>
+				<tr>
+				<th>회원번호</th>
+				<th>회원ID</th>
+				<th>회원PW</th>
+				<th>회원이름</th>
+				<th>회원성별</th>
+				<th>회원나이</th>
+				<th>주소등록</th>
+				</tr>
+
+<%		
 		//DB member테이블에 회원정보를 모두 보여주기위해 반복
 		while(rs.next()){
 			// 결과값을 각 변수에 대입
@@ -62,19 +80,23 @@
 			System.out.println("ListAll.jsp -> " + memberName);
 			System.out.println("ListAll.jsp -> " + memberGender);
 			System.out.println("ListAll.jsp -> " + memberAge);
-			
 			// 테이블 행에 하나의 회원정보 입력
-			out.print("<tr>");
-			out.print("<td>"+memberNo+"</td>");
-			out.print("<td>"+memberId+"</td>");
-			out.print("<td>"+memberPw+"</td>");
-			out.print("<td>"+memberName+"</td>");
-			out.print("<td>"+memberGender+"</td>");
-			out.print("<td>"+memberAge+"</td>");
-			out.print("<td><a href=>주소등록</a></td>");
-			out.print("</tr>");
+%>			
+			<tr>
+				<td><%=memberNo %></td>
+				<td><%=memberId %></td>
+				<td><%=memberPw %></td>
+				<td><%=memberName %></td>
+				<td><%=memberGender %></td>
+				<td><%=memberAge %></td>
+				<td><a href="">주소등록</a></td>
+			</tr>
+<%
 		}
-		out.print("</table>");
+%>
+			</table>
+		</div>
+<% 
 	}finally {
 		// 사용한 Statement 종료
 		if (pstmt1 != null) try { pstmt1.close(); } catch(SQLException ex) {}
