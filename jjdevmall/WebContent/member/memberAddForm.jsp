@@ -24,14 +24,14 @@
 	$(document).ready(function(){
 		$('#memberId').focus();
 		$('#addBtn').click(function(){
-			if($('#memberId').val() == '' || isNaN($('#memberId').val())){
-				$('#idHelper').text('등록하실 아이디를 입력하세요');
+			if($('#memberId').val() == '' || !(isNaN($('#memberId').val()))){
+				$('#idHelper').text('등록하실 아이디를 입력하세요.');
 				$('#memberId').focus();
 			}else if($('#memberPw').val() == ''){
 				$('#idHelper').text('');
 				$('#pwHelper').text('비밀번호가 공백입니다.');
 				$('#memberPw').focus();
-			}else if($('#memberName').val() == ''){
+			}else if($('#memberName').val() == ''|| !(isNaN($('#memberName').val()))){
 				$('#pwHelper').text('');
 				$('#nameHelper').text('이름을 입력하세요.');
 				$('#memberName').focus();
@@ -43,7 +43,7 @@
 				$('#genderHelper').text('');
 				$('#ageHelper').text('나이는 숫자만 또는 공백이면 안됩니다.');
 				$('#memberAge').focus();
-			}else if($('#memberAddr').val()==''){
+			}else if($('#memberAddr').val()=='' || !(isNaN($('#memberAddr').val()))){
 				$('#ageHelper').text('');
 				$('#addrHelper').text('주소를 입력하세요.');
 				$('#memberAddr').focus();

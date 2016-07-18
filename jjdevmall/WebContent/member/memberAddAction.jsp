@@ -16,7 +16,13 @@
 	int memberAge = Integer.parseInt(request.getParameter("memberAge"));
 	String memberAddr = request.getParameter("memberAddr");
 	
-	System.out.println(memberAddr);
+	//확인출력
+	System.out.println("memberAddAction.jsp -> " + memberId);
+	System.out.println("memberAddAction.jsp -> " + memberPw);
+	System.out.println("memberAddAction.jsp -> " + memberName);
+	System.out.println("memberAddAction.jsp -> " + memberGender);
+	System.out.println("memberAddAction.jsp -> " + memberAge);
+	System.out.println("memberAddAction.jsp -> " +memberAddr);
 	
 	String driver = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
@@ -79,11 +85,14 @@
 	}catch(Exception e){
 		conn.rollback();
 		e.printStackTrace();
-	}finally{
-		conn.close();
-		pstmt1.close();
-		pstmt2.close();
-		rs.close();
+	}finally {
+		// 사용한 Statement 종료
+		if (pstmt1 != null) try { pstmt1.close(); } catch(SQLException ex) {}
+		if (pstmt2 != null) try { pstmt2.close(); } catch(SQLException ex) {}
+		if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+		
+		// 커넥션 종료
+		if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	}
 	
 
