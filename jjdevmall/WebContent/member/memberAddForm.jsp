@@ -24,7 +24,7 @@
 	$(document).ready(function(){
 		$('#memberId').focus();
 		$('#addBtn').click(function(){
-			if($('#memberId').val() == ''){
+			if($('#memberId').val() == '' || isNaN($('#memberId').val())){
 				$('#idHelper').text('등록하실 아이디를 입력하세요');
 				$('#memberId').focus();
 			}else if($('#memberPw').val() == ''){
@@ -41,7 +41,7 @@
 				$('.memberGender').focus();
 			}else if(isNaN($('#memberAge').val()) || $('#memberAge').val()==''){
 				$('#genderHelper').text('');
-				$('#ageHelper').text('나이는 숫자만! 또는 공백이면 안됩니다.');
+				$('#ageHelper').text('나이는 숫자만 또는 공백이면 안됩니다.');
 				$('#memberAge').focus();
 			}else if($('#memberAddr').val()==''){
 				$('#ageHelper').text('');
@@ -61,37 +61,44 @@
 		<div id="head">
 			회원등록화면
 		</div>
+		
 		<div>
 			<label>회원 ID</label>
 			<input type="text" name="memberId" id="memberId"/>
 			<span id="idHelper"></span>
 		</div>
+		
 		<div>
 			<label>회원 PW</label>
 			<input type="password" name="memberPw" id="memberPw"/>
 			<span id="pwHelper"></span>
 		</div>
+		
 		<div>
 			<label>회원 이름</label>
 			<input type="text" name="memberName" id="memberName"/>
 			<span id="nameHelper"></span>
 		</div>
+		
 		<div>
 			<label>회원 성별</label>
 			<input type="radio" name="memberGender" class="memberGender" value="남"/>남
 			<input type="radio" name="memberGender" class="memberGender" value="여"/>여
 			<span id="genderHelper"></span>		
 		</div>
+		
 		<div>
 			<label>회원 나이</label>
 			<input type="text" name="memberAge" id="memberAge"/>
 			<span id="ageHelper"></span>
 		</div>
+		
 		<div>
 			<label>회원 주소</label>
 			<input type="text" name="memberAddr" id="memberAddr"/>
 			<span id="addrHelper"></span>
 		</div>
+		
 		<div id="btn">
 			<input type="button" id="addBtn" value="회원등록"/>
 		</div>

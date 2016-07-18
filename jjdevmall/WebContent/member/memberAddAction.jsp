@@ -15,6 +15,7 @@
 	String memberGender = request.getParameter("memberGender");
 	int memberAge = Integer.parseInt(request.getParameter("memberAge"));
 	String memberAddr = request.getParameter("memberAddr");
+	
 	System.out.println(memberAddr);
 	
 	String driver = "com.mysql.jdbc.Driver";
@@ -23,7 +24,9 @@
 	String dbPass = "java0000";
 	
 	Connection conn = null;
-	
+	ResultSet rs = null;
+	PreparedStatement pstmt1 = null;
+	PreparedStatement pstmt2 = null;
 	
 	try{
 		//드라이버로딩
@@ -34,7 +37,7 @@
 		//회원정보 insert쿼리 문장
 		String memberSql = "INSERT INTO member(member_id, member_pw, member_name, member_gender, member_age)VALUES(?,?,?,?,?)";
 		
-		PreparedStatement pstmt1 = conn.prepareStatement(memberSql, Statement.RETURN_GENERATED_KEYS);
+		pstmt1 = conn.prepareStatement(memberSql, Statement.RETURN_GENERATED_KEYS);
 		pstmt1.setString(1, memberId);
 		pstmt1.setString(2, memberPw);
 		pstmt1.setString(3, memberName);
@@ -48,7 +51,7 @@
 		if(result != 0)
 		{	
 			//마지막 회원번호를 받아와
-			ResultSet rs = pstmt1.getGeneratedKeys();
+			rs = pstmt1.getGeneratedKeys();
 			
 			int key = 0;
 			if(rs.next()){
@@ -56,7 +59,7 @@
 			}
 			//회원번호와 주소를 입력
 			String addressSql = "INSERT INTO address(member_no, member_address)VALUES(?,?)";
-			PreparedStatement pstmt2 = conn.prepareStatement(addressSql);
+			pstmt2 = conn.prepareStatement(addressSql);
 			pstmt2.setInt(1, key);
 			pstmt2.setString(2, memberAddr);
 			System.out.println(pstmt2);
@@ -76,6 +79,11 @@
 	}catch(Exception e){
 		conn.rollback();
 		e.printStackTrace();
+	}finally{
+		conn.close();
+		pstmt1.close();
+		pstmt2.close();
+		rs.close();
 	}
 	
 

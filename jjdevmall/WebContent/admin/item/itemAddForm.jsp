@@ -46,24 +46,29 @@
 </head>
 <body>
 	<form id="itemForm" action="<%=request.getContextPath() %>/admin/item/itemAddAction.jsp" method="post">
+		
 		<div id="head">
 			상품등록화면
 		</div>
+		
 		<div>
 			<label>상품명</label>
 			<input type="text" name="itemName" id="itemName"/>
 			<span id="nameHelper"></span>
 		</div>
+		
 		<div>
 			<label>상품가격</label>
 			<input type="text" name="itemPrice" id="itemPrice"/>
 			<span id="priceHelper"></span>
 		</div>
+		
 		<div>
 			<label>할인율</label>
 			<input type="text" name="itemRate" id="itemRate"/>
 			<span id="rateHelper"></span>
 		</div>
+		
 		<div id="btn">
 			<input type="button" id="addBtn" value="상품등록"/>
 		</div>
