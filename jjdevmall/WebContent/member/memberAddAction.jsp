@@ -74,12 +74,11 @@
 			if(result != 0){
 				conn.commit();
 				out.print("<h1>회원등록 완료!</h1>");
-			}
-			else{
-				out.print("<h1>입력데이터가 잘못되었습니다.</h1>");
+				response.sendRedirect(request.getContextPath()+"/member/login/memberLogin.jsp");
 			}
 		}else{
 			out.print("<h1>입력데이터가 잘못되었습니다.</h1>");
+			response.sendRedirect(request.getContextPath()+"/member/memberAddForm.jsp");
 		}
 		
 	}catch(Exception e){

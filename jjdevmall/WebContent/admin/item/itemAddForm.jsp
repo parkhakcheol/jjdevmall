@@ -45,6 +45,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	boolean adminLogin = false;
+	if(session.getAttribute("adminLogin") != null){
+		adminLogin = (boolean)session.getAttribute("adminLogin");
+	}
+
+	if(adminLogin){
+%>
 	<form id="itemForm" action="<%=request.getContextPath() %>/admin/item/itemAddAction.jsp" method="post">
 		
 		<div id="head">
@@ -74,5 +82,10 @@
 		</div>
 		
 	</form>
+<% 	
+	}else{
+		response.sendRedirect(request.getContextPath()+"/admin/adminIndex.jsp");
+	}
+	%>
 </body>
 </html>

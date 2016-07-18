@@ -18,6 +18,10 @@
 		font-style: bold;
 		text-align: center;
 	}
+	span
+	{
+		font-size: 10px;
+	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script>
@@ -64,38 +68,38 @@
 		
 		<div>
 			<label>회원 ID</label>
-			<input type="text" name="memberId" id="memberId"/>
+			<input type="text" name="memberId" id="memberId"/><br/>
 			<span id="idHelper"></span>
 		</div>
 		
 		<div>
 			<label>회원 PW</label>
-			<input type="password" name="memberPw" id="memberPw"/>
+			<input type="password" name="memberPw" id="memberPw"/><br/>
 			<span id="pwHelper"></span>
 		</div>
 		
 		<div>
 			<label>회원 이름</label>
-			<input type="text" name="memberName" id="memberName"/>
+			<input type="text" name="memberName" id="memberName"/><br/>
 			<span id="nameHelper"></span>
 		</div>
 		
 		<div>
 			<label>회원 성별</label>
 			<input type="radio" name="memberGender" class="memberGender" value="남"/>남
-			<input type="radio" name="memberGender" class="memberGender" value="여"/>여
+			<input type="radio" name="memberGender" class="memberGender" value="여"/>여<br/>
 			<span id="genderHelper"></span>		
 		</div>
 		
 		<div>
 			<label>회원 나이</label>
-			<input type="text" name="memberAge" id="memberAge"/>
+			<input type="text" name="memberAge" id="memberAge"/><br/>
 			<span id="ageHelper"></span>
 		</div>
 		
 		<div>
 			<label>회원 주소</label>
-			<input type="text" name="memberAddr" id="memberAddr"/>
+			<input type="text" name="memberAddr" id="memberAddr"/><br/>
 			<span id="addrHelper"></span>
 		</div>
 		
