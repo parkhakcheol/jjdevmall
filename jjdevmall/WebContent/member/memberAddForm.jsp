@@ -57,7 +57,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form id="memberForm" action="memberAddAction.jsp" method="post">
+	<form id="memberForm" action="<%=request.getContextPath()%>/member/memberAddAction.jsp" method="post">
 		<div id="head">
 			회원등록화면
 		</div>
