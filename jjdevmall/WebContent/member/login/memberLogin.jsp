@@ -70,7 +70,7 @@
 		<div id="btn">
 			<input type="button" id="loginBtn" value="로그인"/> / 
 			<a href="<%=request.getContextPath() %>/member/memberAddForm.jsp">회원가입</a> / 
-			<a href="<%=request.getContextPath() %>/index.html">메인 페이지로</a>
+			<a href="<%=request.getContextPath() %>/index.jsp">메인 페이지로</a>
 		</div>
 		
 	</form>

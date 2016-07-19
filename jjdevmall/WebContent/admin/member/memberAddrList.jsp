@@ -29,6 +29,7 @@
 	}
 	//로그인이 되어있다면
 	if(adminLogin){
+		int sendNo = Integer.parseInt(request.getParameter("sendNo"));
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
 		String dbUser = "root";
@@ -46,8 +47,9 @@
 			conn = DriverManager.getConnection(url, dbUser, dbPass);
 			String listSql = null;
 			//전체회원을 보여주는 select 
-			listSql = "SELECT member_no, member_id, member_pw, member_name, member_gender, member_age FROM member";
+			listSql = "SELECT m.member_no, m.member_id, m.member_name, addr.member_address FROM member m LEFT JOIN address addr ON m.member_no=addr.member_no WHERE m.member_no=?";
 			pstmt1 = conn.prepareStatement(listSql);
+			pstmt1.setInt(1, sendNo);
 			
 			rs = pstmt1.executeQuery();
 			System.out.println(pstmt1);
@@ -55,15 +57,12 @@
 			//html태그 사용 회원정보를 테이블에 출력
 	%>
 			<div>
-			<h1>회원 리스트</h1>
+			<h1>주소 리스트</h1>
 				<table>
 					<tr>
 					<th>회원번호</th>
 					<th>회원ID</th>
-					<th>회원PW</th>
 					<th>회원이름</th>
-					<th>회원성별</th>
-					<th>회원나이</th>
 					<th>주소</th>
 					</tr>
 
@@ -73,29 +72,20 @@
 				// 결과값을 각 변수에 대입
 				String memberNo = rs.getString("member_no");
 				String memberId = rs.getString("member_id");
-				String memberPw = rs.getString("member_pw");
 				String memberName = rs.getString("member_name");
-				String memberGender = rs.getString("member_gender");
-				String memberAge = rs.getString("member_age");
-	
+				String memberAddress = rs.getString("member_address");
 				
 				//확인 출력
 				System.out.println("ListAll.jsp -> " + memberNo);
 				System.out.println("ListAll.jsp -> " + memberId);
-				System.out.println("ListAll.jsp -> " + memberPw);
 				System.out.println("ListAll.jsp -> " + memberName);
-				System.out.println("ListAll.jsp -> " + memberGender);
-				System.out.println("ListAll.jsp -> " + memberAge);
 				// 테이블 행에 하나의 회원정보 입력
 	%>			
 				<tr>
 					<td><%=memberNo %></td>	
 					<td><%=memberId %></td>
-					<td><%=memberPw %></td>
 					<td><%=memberName %></td>
-					<td><%=memberGender %></td>
-					<td><%=memberAge %></td>
-					<td><a href="<%=request.getContextPath()%>/admin/member/memberAddrList.jsp?sendNo=<%=memberNo %>">주소보기</a></td>
+					<td><%=memberAddress %></td>
 				</tr>
 	<%
 			}

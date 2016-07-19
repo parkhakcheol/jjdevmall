@@ -78,7 +78,6 @@
 								<th>정보수정</th>
 								<th>회원탈퇴</th>
 								</tr>
-	
 				<%		
 						//DB member테이블에 회원정보를 모두 보여주기위해 반복
 						if(rs.next()){
@@ -91,12 +90,12 @@
 							String memberAge = rs.getString("member_age");
 							
 							//확인 출력
-							System.out.println("ListAll.jsp -> " + memberNo);
-							System.out.println("ListAll.jsp -> " + memberId);
-							System.out.println("ListAll.jsp -> " + memberPw);
-							System.out.println("ListAll.jsp -> " + memberName);
-							System.out.println("ListAll.jsp -> " + memberGender);
-							System.out.println("ListAll.jsp -> " + memberAge);
+							System.out.println("memberInfo.jsp memberNo -> " + memberNo);
+							System.out.println("memberInfo.jsp memberId -> " + memberId);
+							System.out.println("memberInfo.jsp memberPw -> " + memberPw);
+							System.out.println("memberInfo.jsp memberName -> " + memberName);
+							System.out.println("memberInfo.jsp memberGender -> " + memberGender);
+							System.out.println("memberInfo.jsp memberAge -> " + memberAge);
 							// 테이블 행에 하나의 회원정보 입력
 				%>			
 							<tr>
