@@ -30,7 +30,7 @@
 		conn = DriverManager.getConnection(url, dbUser, dbPass);
 		
 		//회원정보를 select하여 id와 pw를 비교하여 
-		String loginSql = "SELECT member_id, member_pw FROM member WHERE member_id=? AND member_pw=?";
+		String loginSql = "SELECT member_no, member_id, member_pw FROM member WHERE member_id=? AND member_pw=?";
 		pstmt1 = conn.prepareStatement(loginSql);
 		pstmt1.setString(1, memberId);
 		pstmt1.setString(2, memberPw);
@@ -43,6 +43,7 @@
 			//세션에 로그인 정보 저장
 			memberLogin = true;
 			session.setAttribute("memberId", rs.getString("member_id"));
+			session.setAttribute("memberNo", rs.getString("member_no"));
 			session.setAttribute("memberLogin", memberLogin);
 			//페이지 이동
 			response.sendRedirect(request.getContextPath()+"/member/memberIndex.jsp");

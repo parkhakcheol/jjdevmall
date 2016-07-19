@@ -4,6 +4,7 @@
 <html>
 <head>
 <style>
+	
 	div
 	{	
 		border: 1px solid #000000;
@@ -40,6 +41,8 @@
 			<ul>
 				<li><a href="<%=request.getContextPath() %>/member/info/memberInfo.jsp">회원정보 조회</a></li>
 				<li><a href="<%=request.getContextPath() %>/member/memberAddAddressForm.jsp">배송지 추가</a></li>
+				<li><a href="<%=request.getContextPath() %>/member/item/itemList.jsp">상품목록</a></li>
+				<li><a href="<%=request.getContextPath() %>/order/orderList.jsp">주문조회</a></li>
 				<li><a href="<%=request.getContextPath() %>/member/login/memberLogout.jsp">로그아웃</a></li>
 			</ul>
 		</div>

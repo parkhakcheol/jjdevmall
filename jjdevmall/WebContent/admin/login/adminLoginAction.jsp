@@ -46,7 +46,7 @@
 			//로그인 처리
 			adminLogin = true;
 			session.setAttribute("adminId", rs.getString("admin_id"));
-			session.setAttribute("adminLevel", rs.getString("admin_level"));
+			session.setAttribute("adminLevel", rs.getInt("admin_level"));
 			session.setAttribute("adminLogin", adminLogin);
 			//처리후 페이지 이동
 			response.sendRedirect(request.getContextPath()+"/admin/adminIndex.jsp");

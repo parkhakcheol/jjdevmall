@@ -9,7 +9,7 @@
 		border: 1px solid #000000;
 		width: 30%;
 		height: 50px;
-		margin: 0 auto;
+		margin: 10px auto;
 		padding-top: 20px;
 	}
 	#head 

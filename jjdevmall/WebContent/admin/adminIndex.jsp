@@ -9,7 +9,7 @@
 	{	
 		border: 1px solid #000000;
 		width: 50%;
-		margin: 0 auto;
+		margin: 1px auto;
 		padding-top: 20px;
 	}
 </style>
@@ -40,6 +40,7 @@
 			<ul>
 				<li><a href="<%=request.getContextPath() %>/admin/member/memberListAll.jsp">전체 회원정보 조회</a></li>
 				<li><a href="<%=request.getContextPath() %>/admin/item/itemAddForm.jsp">상품 등록</a></li>
+				<li><a href="<%=request.getContextPath() %>/admin/item/itemList.jsp">상품 조회</a></li>
 				<li><a href="<%=request.getContextPath() %>/admin/login/adminLogout.jsp">로그아웃</a></li>
 			</ul>
 		</div>
