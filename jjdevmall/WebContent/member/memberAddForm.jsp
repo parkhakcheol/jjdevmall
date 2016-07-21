@@ -68,38 +68,38 @@
 		
 		<div>
 			<label>회원 ID</label>
-			<input type="text" name="memberId" id="memberId"/><br/>
+			<input type="text" name="member_id" id="memberId"/><br/>
 			<span id="idHelper"></span>
 		</div>
 		
 		<div>
 			<label>회원 PW</label>
-			<input type="password" name="memberPw" id="memberPw"/><br/>
+			<input type="password" name="member_pw" id="memberPw"/><br/>
 			<span id="pwHelper"></span>
 		</div>
 		
 		<div>
 			<label>회원 이름</label>
-			<input type="text" name="memberName" id="memberName"/><br/>
+			<input type="text" name="member_name" id="memberName"/><br/>
 			<span id="nameHelper"></span>
 		</div>
 		
 		<div>
 			<label>회원 성별</label>
-			<input type="radio" name="memberGender" class="memberGender" value="남"/>남
-			<input type="radio" name="memberGender" class="memberGender" value="여"/>여<br/>
+			<input type="radio" name="member_gender" class="memberGender" value="남"/>남
+			<input type="radio" name="member_gender" class="memberGender" value="여"/>여<br/>
 			<span id="genderHelper"></span>		
 		</div>
 		
 		<div>
 			<label>회원 나이</label>
-			<input type="text" name="memberAge" id="memberAge"/><br/>
+			<input type="text" name="member_age" id="memberAge"/><br/>
 			<span id="ageHelper"></span>
 		</div>
 		
 		<div>
 			<label>회원 주소</label>
-			<input type="text" name="memberAddr" id="memberAddr"/><br/>
+			<input type="text" name="member_address" id="memberAddr"/><br/>
 			<span id="addrHelper"></span>
 		</div>
 		

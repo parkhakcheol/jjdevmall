@@ -28,18 +28,18 @@
 				var result = (<%=itemPrice%> * quantity) * (1-<%=itemRate%>);
 				
 				//consol.log(quantity);
-				var lnnerTag = '<label>최종금액 : </label><input type="text" id="itemPrice" name="itemPrice" value="'+result+'"/>';
+				var lnnerTag = '<label>최종금액 : </label><input type="text" id="ordersPrice" name="orders_price" value="'+result+'"/>';
 				//var resultBtn = ' <input type="button" id="resultBtn" value="최종주문"/>';
 				$('#resultCheck').append(lnnerTag);
 				//$('#resultCheck').append(resultBtn);
 			});
 			
 			$('#resultBtn').click(function(){
-				$('#orderAddForm').submit();
+				$('#ordersAddForm').submit();
 			});
 		});
 	</script>
-		<form id="orderAddForm" action="<%=request.getContextPath() %>/order/orderAddAction.jsp">
+		<form id="ordersAddForm" action="<%=request.getContextPath() %>/orders/ordersAddAction.jsp">
 			
 			<div>
 				<label>상품번호 : </label>
@@ -53,7 +53,7 @@
 			
 			<div>
 				<label>주문수량 : </label>
-				<select id="quantity" name="quantity">
+				<select id="quantity" name="orders_quantity">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -64,7 +64,7 @@
 			
 			<div>
 				<label>할인율 : </label>
-				<input type="text" id="itemRate" name="itemRate" value="<%=itemRate%>"/>
+				<input type="text" id="ordersRate" name="orders_rate" value="<%=itemRate%>"/>
 			</div>
 			
 			<div>

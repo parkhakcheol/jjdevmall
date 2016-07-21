@@ -44,7 +44,6 @@
 			memberLogin = true;
 			session.setAttribute("memberId", rs.getString("member_id"));
 			session.setAttribute("memberNo", rs.getString("member_no"));
-			session.setAttribute("memberLogin", memberLogin);
 			//페이지 이동
 			response.sendRedirect(request.getContextPath()+"/member/memberIndex.jsp");
 		}else{

@@ -46,12 +46,10 @@
 </head>
 <body>
 <%
-	boolean adminLogin = false;
-	if(session.getAttribute("adminLogin") != null){
-		adminLogin = (boolean)session.getAttribute("adminLogin");
-	}
-
-	if(adminLogin){
+	String adminId = null;
+	adminId = (String)session.getAttribute("adminId");
+	
+	if(adminId != null){
 %>
 	<form id="itemForm" action="<%=request.getContextPath() %>/admin/item/itemAddAction.jsp" method="post">
 		
@@ -61,19 +59,19 @@
 		
 		<div>
 			<label>상품명</label>
-			<input type="text" name="itemName" id="itemName"/>
+			<input type="text" name="item_name" id="itemName"/>
 			<span id="nameHelper"></span>
 		</div>
 		
 		<div>
 			<label>상품가격</label>
-			<input type="text" name="itemPrice" id="itemPrice"/>
+			<input type="text" name="item_price" id="itemPrice"/>
 			<span id="priceHelper"></span>
 		</div>
 		
 		<div>
 			<label>할인율</label>
-			<input type="text" name="itemRate" id="itemRate"/>
+			<input type="text" name="item_rate" id="itemRate"/>
 			<span id="rateHelper"></span>
 		</div>
 		

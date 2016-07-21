@@ -23,15 +23,11 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	//세션에서 로그인 데이터가 있는지 확인
-	boolean memberLogin = false;
 	String loginMemberId = null;
 	loginMemberId = (String)session.getAttribute("memberId");
 	
-	if(session.getAttribute("memberLogin") != null){
-		memberLogin = (boolean)session.getAttribute("memberLogin");
-	}
 	//로그인이 되어있다면
-	if(memberLogin){
+	if(loginMemberId != null){
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
 		String dbUser = "root";
@@ -90,7 +86,7 @@
 					<td><%=itemName %></td>
 					<td><%=itemPrice %></td>
 					<td><%=itemRate %></td>
-					<td><a href="<%=request.getContextPath()%>/order/orderAddForm.jsp?sendItemNo=<%=itemNo %>&sendItemName=<%=itemName %>&sendItemPrice=<%=itemPrice %>&sendItemRate=<%=itemRate %>">주문</a></td>
+					<td><a href="<%=request.getContextPath()%>/orders/ordersAddForm.jsp?sendItemNo=<%=itemNo %>&sendItemName=<%=itemName %>&sendItemPrice=<%=itemPrice %>&sendItemRate=<%=itemRate %>">주문</a></td>
 				</tr>
 	<%
 			}

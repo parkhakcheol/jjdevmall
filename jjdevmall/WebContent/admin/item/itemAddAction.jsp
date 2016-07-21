@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="java.sql.*" %>
+<%request.setCharacterEncoding("utf-8"); %>
+<%@ page import="kr.or.ksmart.dao.ItemDao" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,61 +8,25 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:useBean id="item" class="kr.or.ksmart.dto.ItemDto"/>
+<jsp:setProperty property="*" name="item"/>
 <%
-	request.setCharacterEncoding("utf-8");
-	//form에서 입력값 받아옵니다.
-	boolean adminLogin = false;
-	if(session.getAttribute("adminLogin") != null){
-		adminLogin = (boolean)session.getAttribute("adminLogin");
-	}
 	
-	if(adminLogin){
-		String itemName = request.getParameter("itemName");
-		int itemPrice = Integer.parseInt(request.getParameter("itemPrice"));
-		double itemRate = Double.parseDouble(request.getParameter("itemRate"));
-		
-		//확인 출력
-		System.out.println("itemAddAction.jsp itemName -> " + itemName);
-		System.out.println("itemAddAction.jsp itemPrice -> " + itemPrice);
-		System.out.println("itemAddAction.jsp itemRate -> " + itemRate);
-		
-		String driver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
-		String dbUser = "root";
-		String dbPass = "java0000";
-		
-		Connection conn = null;
-		PreparedStatement pstmt1 = null;
-		
-		try{
-			//드라이버로딩
-			Class.forName(driver);
-			//DB연결
-			conn = DriverManager.getConnection(url, dbUser, dbPass);
+
+	String adminId = null;
+	adminId = (String)session.getAttribute("adminId");
+	
+	if(adminId != null){
+		ItemDao itemDao = new ItemDao();
+		int result = itemDao.itemInsert(item);
+
 			
-			//회원정보 insert쿼리 문장
-			String itemSql = "INSERT INTO item(item_name, item_price, item_rate)VALUES(?,?,?)";
-			
-			pstmt1 = conn.prepareStatement(itemSql);
-			pstmt1.setString(1, itemName);
-			pstmt1.setInt(2, itemPrice);
-			pstmt1.setDouble(3, itemRate);
-			
-			int result = pstmt1.executeUpdate();
-			System.out.println(pstmt1);
-			
-			if(result != 0 ){
-				out.print("<h1>상품등록 완료</h1>");
-				response.sendRedirect(request.getContextPath()+"/admin/adminIndex.jsp");
-			}else{
-				out.print("<h1>상품등록 실패</h1>");
-			}
-		}finally {
-			// 사용한 Statement 종료
-			if (pstmt1 != null) try { pstmt1.close(); } catch(SQLException ex) {}
-			
-			// 커넥션 종료
-			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		if(result != 0 ){
+			System.out.println("itemAddAction.jsp -> 상품등록완료");
+			response.sendRedirect(request.getContextPath()+"/admin/item/itemList.jsp");
+		}else{
+			System.out.println("itemAddAction.jsp -> 상품등록실패");
+			response.sendRedirect(request.getContextPath()+"/admin/adminIndex.jsp");
 		}
 	}else{
 		response.sendRedirect(request.getContextPath()+"/admin/adminIndex.jsp");

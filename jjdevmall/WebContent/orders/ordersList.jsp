@@ -22,19 +22,12 @@
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
-	//세션에서 로그인 데이터가 있는지 확인
-	boolean memberLogin = false;
 	String loginMemberId = null;
-	
 	loginMemberId = (String)session.getAttribute("memberId");
-	
-	
-	
-	if(session.getAttribute("memberLogin") != null){
-		memberLogin = (boolean)session.getAttribute("memberLogin");
-	}
+	//확인출력
+	System.out.println("memberInfo.jsp loginMemberId-> " + loginMemberId);	
 	//로그인이 되어있다면
-	if(memberLogin){
+	if(loginMemberId != null){
 		String loginMemberNo = null;
 		loginMemberNo = (String)session.getAttribute("memberNo");
 		
@@ -95,14 +88,14 @@
 				
 
 				//확인 출력
-				System.out.println("orderList.jsp -> " + ordersNo);
-				System.out.println("orderList.jsp -> " + itemNo);
-				System.out.println("orderList.jsp -> " + memberNo);
-				System.out.println("orderList.jsp -> " + ordersQuantity);
-				System.out.println("orderList.jsp -> " + orderDate);
-				System.out.println("orderList.jsp -> " + ordersRate);
-				System.out.println("orderList.jsp -> " + ordersPrice);
-				System.out.println("orderList.jsp -> " + ordersState);
+				System.out.println("ordersList.jsp -> " + ordersNo);
+				System.out.println("ordersList.jsp -> " + itemNo);
+				System.out.println("ordersList.jsp -> " + memberNo);
+				System.out.println("ordersList.jsp -> " + ordersQuantity);
+				System.out.println("ordersList.jsp -> " + orderDate);
+				System.out.println("ordersList.jsp -> " + ordersRate);
+				System.out.println("ordersList.jsp -> " + ordersPrice);
+				System.out.println("ordersList.jsp -> " + ordersState);
 				// 테이블 행에 하나의 회원정보 입력
 	%>			
 				<tr>

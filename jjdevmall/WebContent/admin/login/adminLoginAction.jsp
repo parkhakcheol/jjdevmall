@@ -14,7 +14,6 @@
 	String adminId = request.getParameter("adminId");
 	String adminPw = request.getParameter("adminPw");
 	//로그인 처리확인 변수
-	boolean adminLogin = false;
 	
 	String driver = "com.mysql.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
@@ -44,10 +43,8 @@
 		//관리자 정보가 있다면
 		if(rs.next()){
 			//로그인 처리
-			adminLogin = true;
 			session.setAttribute("adminId", rs.getString("admin_id"));
 			session.setAttribute("adminLevel", rs.getInt("admin_level"));
-			session.setAttribute("adminLogin", adminLogin);
 			//처리후 페이지 이동
 			response.sendRedirect(request.getContextPath()+"/admin/adminIndex.jsp");
 		}else{

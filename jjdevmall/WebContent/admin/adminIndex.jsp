@@ -21,12 +21,10 @@
 		//관리자 로그인 페이지 입니다
 		
 		//관리자 로그인 정보를 확인
-		boolean adminLogin = false;
-		if(session.getAttribute("adminLogin") != null){
-			adminLogin = (boolean)session.getAttribute("adminLogin");
-		}
-		//로그인이 되어있다면 메뉴출력
-		if(adminLogin){
+		String adminId = null;
+		adminId = (String)session.getAttribute("adminId");
+	
+		if(adminId != null){
 	%>
 		<div>
 			<h1>관리자 로그인 페이지</h1>

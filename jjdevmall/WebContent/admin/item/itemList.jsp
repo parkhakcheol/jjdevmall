@@ -23,12 +23,10 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	//세션에서 로그인 데이터가 있는지 확인
-	boolean adminLogin = false;
-	if(session.getAttribute("adminLogin") != null){
-		adminLogin = (boolean)session.getAttribute("adminLogin");
-	}
-	//로그인이 되어있다면
-	if(adminLogin){
+	String adminId = null;
+	adminId = (String)session.getAttribute("adminId");
+	
+	if(adminId != null){
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
 		String dbUser = "root";
@@ -96,6 +94,7 @@
 	%>
 				</table>
 			</div>
+			
 	<% 
 		}finally {
 			// 사용한 Statement 종료

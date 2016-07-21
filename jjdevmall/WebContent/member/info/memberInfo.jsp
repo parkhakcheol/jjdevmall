@@ -24,19 +24,14 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	//로그인 정보를 세션에서 받아온다
-	boolean memberLogin = false;
 	String loginMemberId = null;
 	loginMemberId = (String)session.getAttribute("memberId");
 	
-	if(session.getAttribute("memberLogin") != null){
-		memberLogin = (boolean)session.getAttribute("memberLogin");
-	}
 	//확인출력
 	System.out.println("memberInfo.jsp loginMemberId-> " + loginMemberId);
-	System.out.println("memberInfo.jsp memberLogin-> " + memberLogin);
 	
 	//로그인이 되어있다면
-	if(memberLogin){
+	if(loginMemberId != null){
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
 		String dbUser = "root";
