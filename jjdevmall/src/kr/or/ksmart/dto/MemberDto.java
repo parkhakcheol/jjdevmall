@@ -1,6 +1,7 @@
 package kr.or.ksmart.dto;
 
 public class MemberDto {
+	private int member_no = 0;
 	private String member_id = null;
 	private String member_pw = null;
 	private String member_name = null;
@@ -9,6 +10,13 @@ public class MemberDto {
 	private String member_address = null;
 	
 		
+	public int getMember_no() {
+		return member_no;
+	}
+	public void setMember_no(int member_no) {
+		System.out.println("MemberDto.java member_no : member_no");
+		this.member_no = member_no;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

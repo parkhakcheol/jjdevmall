@@ -10,11 +10,12 @@
 	}
 	div
 	{
-		width: 50%;
+		width: 100%;
 		height: 50px;
 		margin: 0 auto;
 		padding-top: 20px;
 	}
+	table{width:100%;}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
@@ -60,6 +61,7 @@
 	%>
 			<div>
 			<h1>주문 리스트</h1>
+				
 				<table>
 					<tr>
 					<th>주문번호</th>
@@ -127,5 +129,6 @@
 		response.sendRedirect(request.getContextPath()+"/member/login/memberLogin.jsp");
 	}
 %>
+
 </body>
 </html>

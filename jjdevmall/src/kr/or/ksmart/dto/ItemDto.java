@@ -1,11 +1,19 @@
 package kr.or.ksmart.dto;
 
 public class ItemDto {
-	
+	private int itme_no = 0;
 	private String item_name = null;
 	private int item_price = 0;
 	private double item_rate = 0;
 	
+	
+	public int getItme_no() {
+		return itme_no;
+	}
+	public void setItme_no(int itme_no) {
+		System.out.println("ItemDto.java itme_no : " + itme_no);
+		this.itme_no = itme_no;
+	}
 	public String getItem_name() {
 		return item_name;
 	}

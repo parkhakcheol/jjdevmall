@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%request.setCharacterEncoding("utf-8"); %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
@@ -8,20 +9,11 @@
 </head>
 <body>
 <%
-/* 	request.setCharacterEncoding("utf-8");
-boolean memberLogin = false;
+
 String loginMemberId = null;
 loginMemberId = (String)session.getAttribute("memberId");
-
-if(session.getAttribute("memberLogin") != null){
-	memberLogin = (boolean)session.getAttribute("memberLogin");
-}
-//확인출력
-System.out.println("memberInfo.jsp loginMemberId-> " + loginMemberId);
-System.out.println("memberInfo.jsp memberLogin-> " + memberLogin);
-
-//로그인이 되어있다면
-if(memberLogin){
+		//로그인이 되어있다면 페이지 출력
+if(loginMemberId != null){
 
 	String memberId = request.getParameter("memberId");
 	String memberPw = request.getParameter("memberPw");
@@ -86,8 +78,10 @@ if(memberLogin){
 		// 커넥션 종료
 		if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 	}
+}else{
 	
- */
+}
+	
 %>
 </body>
 </html>
