@@ -100,7 +100,7 @@
 								<td><%=memberName %></td>
 								<td><%=memberGender %></td>
 								<td><%=memberAge %></td>
-								<td><a href="<%=request.getContextPath()%>/member/update/memberUpdateForm.jsp?sendId=<%=memberId%>">정보수정</a></td>
+								<td><a href="<%=request.getContextPath()%>/member/update/memberUpdateForm.jsp?sendNo=<%=memberNo%>">정보수정</a></td>
 								<td><a href="<%=request.getContextPath()%>/member/delete/memberDelete.jsp?sendNo=<%=memberNo%>">회원탈퇴</a></td>
 							</tr>
 				<%

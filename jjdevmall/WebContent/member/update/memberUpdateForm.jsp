@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="java.sql.*" %>
+<%request.setCharacterEncoding("utf-8"); %>
+<%@ page import="java.util.*" %>
+<%@ page import="kr.or.ksmart.dao.MemberDao" %>
+<%@ page import="kr.or.ksmart.dto.MemberDto" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,122 +51,65 @@
 				$('#memberForm').submit();
 			}
 		});
-	});
 </script>
 <title>Insert title here</title>
 </head>
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
-	boolean memberLogin = false;
 	String loginMemberId = null;
 	loginMemberId = (String)session.getAttribute("memberId");
 	
-	if(session.getAttribute("memberLogin") != null){
-		memberLogin = (boolean)session.getAttribute("memberLogin");
-	}
 	//확인출력
 	System.out.println("memberInfo.jsp loginMemberId-> " + loginMemberId);
-	System.out.println("memberInfo.jsp memberLogin-> " + memberLogin);
 	
 	//로그인이 되어있다면
-	if(memberLogin){
-		String sendId = request.getParameter("sendId");
-	
-	//확인출력
-		System.out.println("memberDelete.jsp -> " + sendId);
+	if(loginMemberId != null){
+		int sendNo = Integer.parseInt(request.getParameter("sendNo"));
+		System.out.println("memberDelete.jsp -> " + sendNo);
 		
-		
-		String driver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
-		String dbUser = "root";
-		String dbPass = "java0000";
-		
-		Connection conn = null;
-		ResultSet rs = null;
-		PreparedStatement pstmt1 = null;
-		
-		String memberId = null;
-		String memberPw = null;
-		String memberName = null;
-		String memberGender = null;
-		int memberAge = 0;
-		
-		
-		try{
-			//드라이버로딩
-			Class.forName(driver);
-			//DB연결
-			conn = DriverManager.getConnection(url, dbUser, dbPass);
-			//회원정보 select문장
-			String addressSql = "SELECT member_id, member_pw, member_name, member_gender, member_age FROM member WHERE member_id=?";
-			
-			pstmt1 = conn.prepareStatement(addressSql);
-			pstmt1.setString(1, sendId);
-			
-			rs = pstmt1.executeQuery();
-			System.out.println(pstmt1);
-			
-			//회원정보가 있다면
-			if(rs.next())
-			{	
-				memberId = rs.getString("member_id");
-				memberPw = rs.getString("member_pw");
-				memberName = rs.getString("member_name");
-				memberGender = rs.getString("member_gender");
-				memberAge = rs.getInt("member_age");
-			}else{
-				out.print("<h1>입력데이터가 잘못되었습니다.</h1>");
-				response.sendRedirect(request.getContextPath()+"/member/memberAddForm.jsp");
-			}
-			
-		}catch(Exception e){
-			conn.rollback();
-			e.printStackTrace();
-		}finally {
-			// 사용한 Statement 종료
-			if (pstmt1 != null) try { pstmt1.close(); } catch(SQLException ex) {}
-			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-			
-			// 커넥션 종료
-			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
-		}
+		MemberDao memberDao = new MemberDao();
+		//ArrayList<MemberAndAddressDto> memberList = new ArrayList<MemberAndAddressDto>();
+		MemberDto memberDto = new MemberDto();
+		memberDto = memberDao.memberUpdateForm(sendNo);
+
 		%>
 		<form id="memberUpdateForm" action="<%=request.getContextPath()%>/member/update/memberUpdateAction.jsp" method="post">
 			<div id="head">
 				회원정보수정화면
+				<input type="hidden" name="member_no" id="memberNo" value="<%=sendNo %>"/>
 			</div>
 			
 			<div>
 				<label>회원 ID</label>
-				<input type="text" name="memberId" id="memberId" readonly="readonly" value="<%=memberId %>"/><br/>
+				<input type="text" name="member_id" id="memberId" value="<%=memberDto.getMember_id() %>"/><br/>
 				<span id="idHelper"></span>
 			</div>
 			
 			<div>
 				<label>회원 PW</label>
-				<input type="password" name="memberPw" id="memberPw" value="<%=memberPw %>"/><br/>
+				<input type="password" name="member_pw" id="memberPw" value="<%=memberDto.getMember_pw() %>"/><br/>
 				<span id="pwHelper"></span>
 			</div>
 			
 			<div>
 				<label>회원 이름</label>
-				<input type="text" name="memberName" id="memberName" value="<%=memberName %>"/><br/>
+				<input type="text" name="member_name" id="memberName" value="<%=memberDto.getMember_name() %>"/><br/>
 				<span id="nameHelper"></span>
 			</div>
 			
 			<div>
 				<label>회원 성별</label>
 				<%
-					if(memberGender.equals("남")){
+					if(memberDto.getMember_gender().equals("남")){
 				%>
-						<input type="radio" name="memberGender" class="memberGender" value="남" checked="checked"/>남
-						<input type="radio" name="memberGender" class="memberGender" value="여"/>여<br/>
+						<input type="radio" name="member_gender" class="memberGender" value="남" checked="checked"/>남
+						<input type="radio" name="member_gender" class="memberGender" value="여"/>여<br/>
 				<% 
 					}else{
 				%>
-						<input type="radio" name="memberGender" class="memberGender" value="남"/>남
-						<input type="radio" name="memberGender" class="memberGender" value="여" checked="checked"/>여<br/>
+						<input type="radio" name="member_gender" class="memberGender" value="남"/>남
+						<input type="radio" name="member_gender" class="memberGender" value="여" checked="checked"/>여<br/>
 				<% 	
 					}	
 				%>
@@ -172,8 +118,15 @@
 			
 			<div>
 				<label>회원 나이</label>
-				<input type="text" name="memberAge" id="memberAge" value="<%=memberAge %>"/><br/>
+				<input type="text" name="member_age" id="memberAge" value="<%=memberDto.getMember_age() %>"/><br/>
 				<span id="ageHelper"></span>
+			</div>
+			
+			<div>
+				<label>회원 주소</label><br/>
+				<input type="hidden" name="member_afteraddr" id="member_afteraddr" value="<%=memberDto.getMember_address() %>"/>
+				<input type="text" name="member_address" class="memberAddress" value="<%=memberDto.getMember_address() %>"/><br/>
+				<span id="addressHelper"></span>
 			</div>
 			
 			<div id="btn">

@@ -1,5 +1,6 @@
 package kr.or.ksmart.dto;
 
+//상품테이블 객체입니다.
 public class ItemDto {
 	private int itme_no = 0;
 	private String item_name = null;

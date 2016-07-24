@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%request.setCharacterEncoding("utf-8"); %>
-<%@ page import="java.sql.*" %>
+<%@ page import="kr.or.ksmart.dao.MemberDao" %>
+<%@ page import="kr.or.ksmart.dto.MemberDto" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,34 +30,11 @@ if(loginMemberId != null){
 	System.out.println("memberAddAction.jsp -> " + memberGender);
 	System.out.println("memberAddAction.jsp -> " + memberAge);
 	
-	String driver = "com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
-	String dbUser = "root";
-	String dbPass = "java0000";
-	
-	Connection conn = null;
-	ResultSet rs = null;
-	PreparedStatement pstmt1 = null;
-	
 	try{
 		//드라이버로딩
 		Class.forName(driver);
 		//DB연결
 		conn = DriverManager.getConnection(url, dbUser, dbPass);
-		conn.setAutoCommit(false); //트랜잭션
-		//회원정보 insert쿼리 문장
-		String memberSql = "UPDATE member SET member_pw=?, member_name=?, member_gender=?, member_age=? WHERE member_id=?";
-		
-		pstmt1 = conn.prepareStatement(memberSql, Statement.RETURN_GENERATED_KEYS);
-		
-		pstmt1.setString(1, memberPw);
-		pstmt1.setString(2, memberName);
-		pstmt1.setString(3, memberGender);
-		pstmt1.setInt(4, memberAge);
-		pstmt1.setString(5, memberId);
-		
-		int result = pstmt1.executeUpdate();
-		System.out.println(pstmt1);
 		
 		//회원정보가 잘입력되었다면
 		if(result != 0){	

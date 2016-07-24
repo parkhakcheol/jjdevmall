@@ -2,7 +2,7 @@
 <%@ page import="kr.or.ksmart.dao.MemberDao" %>
 <%request.setCharacterEncoding("utf-8");%>
 <jsp:useBean id="member" class="kr.or.ksmart.dto.MemberDto"/>
-<<jsp:setProperty property="*" name="member"/>
+<jsp:setProperty property="*" name="member"/>
 <!DOCTYPE html>
 <html>
 <head>

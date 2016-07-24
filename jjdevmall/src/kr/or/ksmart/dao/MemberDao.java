@@ -230,12 +230,123 @@ public class MemberDao {
 		return addrList;
 	}
 	
-	//회원정보 수정처리 메서드
-	public int memberUpdate(MemberDto memberDto){
-		int result = 0;
+	//회원정보 수정화면 메서드
+	public MemberDto memberUpdateForm(int memberNo) throws SQLException{
+		PreparedStatement memberPstmt = null;
 		
+		//ArrayList<MemberAndAddressDto> memberList = new ArrayList<MemberAndAddressDto>();
+		MemberDto memberDto = new MemberDto();
+		String memberSql = "SELECT m.member_id, m.member_pw, m.member_name, m.member_gender, m.member_age, addr.member_address FROM member m LEFT JOIN address addr ON m.member_no=addr.member_no WHERE m.member_no=?";
+		memberPstmt = connection.prepareStatement(memberSql);
+		memberPstmt.setInt(1, memberNo);
+		System.out.println(memberPstmt);
 		
-		return result;
+		resultSet = memberPstmt.executeQuery();
+		
+		//회원정보를 리스트에 저장
+		if(resultSet.next()){
+			//MemberAndAddressDto addressDto = new MemberAndAddressDto();
+			
+			String memberId = resultSet.getString("member_id");
+			String memberPw = resultSet.getString("member_pw");
+			String memberName = resultSet.getString("member_name");
+			String memberGender = resultSet.getString("member_gender");
+			int memberAge = resultSet.getInt("member_age");
+			String memberAddress = resultSet.getString("member_address");
+			
+			//확인 출력
+			System.out.println("MemberDao.jsp memberUpdateForm() member_id -> " + memberId);
+			System.out.println("MemberDao.jsp memberUpdateForm() member_pw -> " + memberPw);
+			System.out.println("MemberDao.jsp memberUpdateForm() member_name -> " + memberName);
+			System.out.println("MemberDao.jsp memberUpdateForm() member_gender -> " + memberGender);
+			System.out.println("MemberDao.jsp memberUpdateForm() member_age -> " + memberAge);
+			System.out.println("MemberDao.jsp memberUpdateForm() member_address -> " + memberAddress);
+			
+			//객체에 셋팅
+			memberDto.setMember_id(memberId);
+			memberDto.setMember_pw(memberPw);
+			memberDto.setMember_name(memberName);
+			memberDto.setMember_gender(memberGender);
+			memberDto.setMember_age(memberAge);
+			memberDto.setMember_address(memberAddress);
+			
+			//memberList.add(addressDto);
+		}
+		
+		if (memberPstmt != null) try { memberPstmt.close(); } catch(SQLException ex) {}
+		if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+		
+		// 커넥션 종료
+		if (connection != null) try { connection.close(); } catch(SQLException ex) {}	
+		
+		return memberDto;
 		
 	}
+	
+	//회원정보 수정처리 메서드
+		public int memberUpdateAction(MemberDto member) throws SQLException{
+			//리턴할 결과값 저장 변수
+			int result = 0;
+			PreparedStatement updatePstmt = null;
+			PreparedStatement addressPstmt = null;
+			
+			connection.setAutoCommit(false); //트랜잭션
+		
+			String updateSql = "UPDATE member SET member_id=?, member_pw=?, member_name=?, member_gender=?, member_age=? WHERE member_no=?";
+			
+			updatePstmt = connection.prepareStatement(updateSql);
+			
+			updatePstmt.setString(1, member.getMember_id());
+			updatePstmt.setString(2, member.getMember_pw());
+			updatePstmt.setString(3, member.getMember_name());
+			updatePstmt.setString(4, member.getMember_gender());
+			updatePstmt.setInt(5, member.getMember_age());
+			updatePstmt.setInt(6, member.getMember_no());
+			
+			
+			result = updatePstmt.executeUpdate();
+			System.out.println(updatePstmt);
+			
+			String addressSql = "UPDATE address SET member_address=? WHERE member_no=?";
+			addressPstmt
+			
+			//회원정보를 리스트에 저장
+			if(resultSet.next()){
+				//MemberAndAddressDto addressDto = new MemberAndAddressDto();
+				
+				String memberId = resultSet.getString("member_id");
+				String memberPw = resultSet.getString("member_pw");
+				String memberName = resultSet.getString("member_name");
+				String memberGender = resultSet.getString("member_gender");
+				int memberAge = resultSet.getInt("member_age");
+				String memberAddress = resultSet.getString("member_address");
+				
+				//확인 출력
+				System.out.println("MemberDao.jsp memberUpdateForm() member_id -> " + memberId);
+				System.out.println("MemberDao.jsp memberUpdateForm() member_pw -> " + memberPw);
+				System.out.println("MemberDao.jsp memberUpdateForm() member_name -> " + memberName);
+				System.out.println("MemberDao.jsp memberUpdateForm() member_gender -> " + memberGender);
+				System.out.println("MemberDao.jsp memberUpdateForm() member_age -> " + memberAge);
+				System.out.println("MemberDao.jsp memberUpdateForm() member_address -> " + memberAddress);
+				
+				//객체에 셋팅
+				memberDto.setMember_id(memberId);
+				memberDto.setMember_pw(memberPw);
+				memberDto.setMember_name(memberName);
+				memberDto.setMember_gender(memberGender);
+				memberDto.setMember_age(memberAge);
+				memberDto.setMember_address(memberAddress);
+				
+				//memberList.add(addressDto);
+			}
+			
+			if (memberPstmt != null) try { memberPstmt.close(); } catch(SQLException ex) {}
+			if (resultSet != null) try { resultSet.close(); } catch(SQLException ex) {}
+			
+			// 커넥션 종료
+			if (connection != null) try { connection.close(); } catch(SQLException ex) {}	
+			
+			return memberDto;
+			
+		}
 }

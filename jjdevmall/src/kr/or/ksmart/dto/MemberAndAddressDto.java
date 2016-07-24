@@ -1,12 +1,15 @@
 package kr.or.ksmart.dto;
 
+//회원 주소 조회를 할때 주소가 한개 이상일수가 있어 조인을 결과를 담을 객체입니다.
 public class MemberAndAddressDto {
 	private int address_no = 0;
 	private int member_no = 0;
 	private String member_address = null;
 	private String member_name = null;
 	private String member_id = null;
-	
+	private String member_pw = null;
+	private String member_gender = null;
+	private int member_age = 0;
 	
 	
 	public String getMember_id() {
@@ -44,6 +47,28 @@ public class MemberAndAddressDto {
 		System.out.println("AddressDto.java member_address : member_address");
 		this.member_address = member_address;
 	}
+	public String getMember_pw() {
+		return member_pw;
+	}
+	public void setMember_pw(String member_pw) {
+		System.out.println("AddressDto.java member_pw : member_pw");
+		this.member_pw = member_pw;
+	}
+	public String getMember_gender() {
+		return member_gender;
+	}
+	public void setMember_gender(String member_gender) {
+		System.out.println("AddressDto.java member_gender : member_gender");
+		this.member_gender = member_gender;
+	}
+	public int getMember_age() {
+		return member_age;
+	}
+	public void setMember_age(int member_age) {
+		System.out.println("AddressDto.java member_age : member_age");
+		this.member_age = member_age;
+	}
+	
 	
 	
 }

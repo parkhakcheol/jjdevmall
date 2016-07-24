@@ -1,5 +1,6 @@
 package kr.or.ksmart.dto;
 
+//member table ∞¥√º¿‘¥œ¥Ÿ.
 public class MemberDto {
 	private int member_no = 0;
 	private String member_id = null;

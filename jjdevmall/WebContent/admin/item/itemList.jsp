@@ -68,6 +68,7 @@
 				</table>
 			</div>	
 <% 
+	//로그인이 되어있지 않다면 로그인 페이지로 이동
 	}else{
 		response.sendRedirect(request.getContextPath()+"/admin/login/adminLogin.jsp");
 	}

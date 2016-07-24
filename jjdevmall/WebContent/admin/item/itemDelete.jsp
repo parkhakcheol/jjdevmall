@@ -9,12 +9,15 @@
 </head>
 <body>
 <%
+	//상품 삭제 페이지
+	//로그인이 되어있는지 확인
 	String adminId = null;
 	adminId = (String)session.getAttribute("adminId");
-	
+	//로그인이 되어있다면
 	if(adminId != null){
-		int sendItemNo = Integer.parseInt(request.getParameter("sendItemNo"));
 		
+		int sendItemNo = Integer.parseInt(request.getParameter("sendItemNo"));
+		// 상품삭체 처리
 		ItemDao itemDao = new ItemDao();
 		int result = itemDao.itemDelete(sendItemNo);
 			
@@ -26,7 +29,7 @@
 			System.out.println("ItemDelete.java -> 상품삭제실패");
 			response.sendRedirect(request.getContextPath()+"/admin/item/itemList.jsp");
 		}
-			
+	//로그인이 되어있지않다면 로그인 페이지로 이동		
 	}else{
 		response.sendRedirect(request.getContextPath()+"/admin/login/adminLogin.jsp");
 	}
