@@ -31,7 +31,13 @@
 <script>
 	$(document).ready(function(){
 		$('#memberId').focus();
-			if($('#memberPw').val() == ''){
+		
+		$('#addBtn').click(function(){
+				
+			if($('#memberId').val() == ''){
+				$('#idHelper').text('아이디는 공백을할 수 없습니다.');
+				$('#memberId').focus();
+			}else if($('#memberPw').val() == ''){
 				$('#idHelper').text('');
 				$('#pwHelper').text('비밀번호가 공백입니다.');
 				$('#memberPw').focus();
@@ -48,9 +54,10 @@
 				$('#ageHelper').text('나이는 숫자만 또는 공백이면 안됩니다.');
 				$('#memberAge').focus();
 			}else{
-				$('#memberForm').submit();
+				$('#memberUpdateForm').submit();
 			}
 		});
+	});
 </script>
 <title>Insert title here</title>
 </head>
