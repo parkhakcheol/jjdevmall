@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<style>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="no-js" lang="ko">
+<%@ include file="./module/head.jsp"  %>
+<!-- <style>
 	div
 	{
 		border: 1px solid #000000;
@@ -13,21 +13,23 @@
 </style>
 <title>Insert title here</title>
 </head>
-<body>
+<body> -->
+
 <%
 	session.invalidate();
 %>
 	<div>
-		<h1>¸ŞÀÎÆäÀÌÁö ÀÔ´Ï´Ù.</h1>
+		<h1>ë©”ì¸í˜ì´ì§€ ì…ë‹ˆë‹¤.</h1>
 	</div>
 	
 	<div>
 		<ul>
-			<li><a href="<%=request.getContextPath() %>/admin/login/adminLogin.jsp">°ü¸®ÀÚ ·Î±×ÀÎ</a></li>
-			<li><a href="<%=request.getContextPath() %>/member/login/memberLogin.jsp">È¸¿ø ·Î±×ÀÎ</a></li>
+			<li><a href="<%=request.getContextPath() %>/admin/login/adminLogin.jsp">ê´€ë¦¬ì ë¡œê·¸ì¸</a></li>
+			<li><a href ="<%=request.getContextPath() %>/member/login/memberLogin.jsp">íšŒì› ë¡œê·¸ì¸</a></li>
 		</ul>
 	</div>
 	
+<%@ include file="./module/footer.jsp" %>
 
 </body>
 </html>

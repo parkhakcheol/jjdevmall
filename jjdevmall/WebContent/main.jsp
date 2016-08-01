@@ -2,27 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js" lang="ko">
-	<%@ include file="./head.jsp"  %>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">page</a></li>
-                            <li><a href="#">shop</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right cart-menu">
-                        <li><a href="#" class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><span> Cart -$0&nbsp;</span> <span class="shoping-cart">0</span></a></li>
-                    </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container -->
-            </nav>
-        </header>
-
+	<%@ include file="./module/head.jsp"  %>
         <section class="search-section">
             <div class="container">
                 <div class="row subscribe-from">
@@ -50,7 +30,7 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img src="images/msson.jpg" width="1648" height="600" alt="">
+                        <img src="images/slider.jpg" width="1648" height="600" alt="">
                         <div class="carousel-caption">
                             <h2>손예진 <b>&</b> JEANS</h2>
                             <h3>메인 <Span>SALE</Span></h3>
@@ -592,7 +572,7 @@
             </div><!-- end of /.container -->
         </section><!-- end of /.news letter section -->
 
-        <section class="client-section">
+       <!--  <section class="client-section">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -646,9 +626,9 @@
                 <div class="customNavigation works-navigation">
                     <a class="btn-work works-prev"><i class="pe-7s-angle-left"></i></a>
                     <a class="btn-work works-next"><i class="pe-7s-angle-right"></i></a>
-                </div><!-- end of /.client navigation -->
+                </div>end of /.client navigation
             </div>
-        </section>
+        </section> -->
 
         <section class="news-section">
             <div class="container">
@@ -689,7 +669,7 @@
             </div>
         </section>
 
-        <section class="contact-section">
+      <!--   <section class="contact-section">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -764,16 +744,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
-       <%@ include file="./footer.jsp" %>
+       <%@ include file="./module/footer.jsp" %>
 
-        <!-- JQUERY -->
-        <script src="js/vendor/jquery-1.11.2.min.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/isotope.pkgd.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/wow.min.js"></script>
-        <script src="js/custom.js"></script>
+       
     </body>
 </html>

@@ -33,6 +33,7 @@ Tags: black, green, white, two-columns, fixed-width, threaded-comments, sticky-p
    1. GENERAL SECTION
  ====================== */
 
+
 * {
     margin: 0;
     padding: 0px;
@@ -112,6 +113,7 @@ body {
     padding: 0;
     margin: 0;
 }
+
 a {
     color: #0098d7;
     padding: 0;
@@ -495,6 +497,7 @@ span.shoping-cart {
     width: 100%;
     height: auto;
 }
+
 .carousel-inner{
     position: relative;
 }
@@ -749,6 +752,7 @@ a.carousel-control.right > span{
     padding: 10px;
     padding-left: 15px;
 }
+
 .product-title span{
     display: block;
     background: rgba(255, 255, 255, 0.5);
@@ -892,6 +896,7 @@ a.carousel-control.right > span{
 /*
     BEST SELLER SECTION
  */
+
 .best-seller-section{
     display: block;
     padding: 100px 0 80px;
@@ -943,6 +948,7 @@ a.carousel-control.right > span{
     text-align: center;
     line-height: 24px;
 }
+ 
 .feedback .item .carousel-caption h3{
     font-size: 18px;
     font-weight: 700;
@@ -1355,7 +1361,7 @@ footer.footer p a{
     font-size: 20px;
     color: #FFF;
 }
-
+  
     @-webkit-keyframes preloader {
       0% {
         box-shadow: -2em 0 0 #1abc9c, 0 -2em 0 rgba(163, 189, 227, 0.75), 2em 0 0 rgba(163, 189, 227, 0.5), 0 2em 0 rgba(163, 189, 227, 0.25);
@@ -1506,6 +1512,7 @@ footer.footer p a{
 
 
 }
+
 @media (max-width: 620px){
     .header-top-content ul li a{
         font-size: 12px;
@@ -1545,4 +1552,8 @@ footer.footer p a{
         top: 7%;
         z-index: 999;
     }
+   
 }
+
+.center div{ width: 900px; margin-left: 300px; border: 1px solid #000000;}
+

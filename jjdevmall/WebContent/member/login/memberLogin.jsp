@@ -1,32 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<style>
-	div
-	{
-		border: 1px solid #000000;
-		width: 30%;
-		height: 50px;
-		margin: 0 auto;
-		padding-top: 20px;
-	}
-	#head 
-	{
-		font-size: 25px;
-		font-style: bold;
-		text-align: center;
-	}
-	#btn
-	{
-		text-align: center;
-	}
-	span
-	{
-		font-size: 10px;
-	}
-</style>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="no-js" lang="ko">
+	<%@ include file="../../module/head.jsp"  %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -47,9 +23,10 @@
 		});
 	});
 </script>
-<title>Insert title here</title>
-</head>
-<body>
+
+
+<!-- <div style="width: 900px; height: 600px; padding-top: 200px; padding-left: 500px;"> -->
+<div class="center">
 	<form id="LoginForm" action="<%=request.getContextPath()%>/member/login/memberLoginAction.jsp" method="post">
 		<div id="head">
 			회원 로그인
@@ -74,5 +51,7 @@
 		</div>
 		
 	</form>
+</div>
+ <%@ include file="../../module/footer.jsp" %>
 </body>
 </html>
