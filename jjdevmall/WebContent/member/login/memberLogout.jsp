@@ -12,7 +12,7 @@
 	session.invalidate();
 
 	//adminIndex.jsp 페이지로 이동
-	response.sendRedirect(request.getContextPath()+"/member/memberIndex.jsp");
+	response.sendRedirect(request.getContextPath()+"/main.jsp");
 %>
 </body>
 </html>

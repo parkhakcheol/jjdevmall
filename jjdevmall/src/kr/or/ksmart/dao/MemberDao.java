@@ -344,6 +344,55 @@ public class MemberDao {
 			if (connection != null) try { connection.close(); } catch(SQLException ex) {}	
 			
 			return result;
+		}
+		
+		//회원 로그인 체크 메서드
+		public String memberLoginCheck(String memberId, String memberPw) throws SQLException{
+			MemberDto memberDto = new MemberDto();
+			PreparedStatement loginPstmt = null;
+			String result = null;
 			
+			String loginSql = "SELECT member_no, member_id, member_pw FROM member WHERE member_id=? AND member_pw=?";
+			loginPstmt = connection.prepareStatement(loginSql);
+			loginPstmt.setString(1, memberId);
+			loginPstmt.setString(2, memberPw);
+			
+			resultSet = loginPstmt.executeQuery();
+			System.out.println(loginPstmt);
+			
+			if(resultSet.next()){
+				
+				if(resultSet.getString("member_pw").equals(memberPw)){
+					result = "로그인성공";
+				}else{
+					result = "비밀번호불일치";
+				}
+				
+			}else{
+				result = "아이디불일치";
+			}
+			
+			return result;
+		}
+		
+		//회원 로그인 처리 메서드
+		public MemberDto memberLogin(String memberId) throws SQLException{
+			MemberDto memberDto = new MemberDto();
+			PreparedStatement loginPstmt = null;
+			
+			String loginSql = "SELECT member_no, member_id, member_name FROM member WHERE member_id=?";
+			loginPstmt = connection.prepareStatement(loginSql);
+			loginPstmt.setString(1, memberId);
+			
+			resultSet = loginPstmt.executeQuery();
+			System.out.println(loginPstmt);
+			
+			if(resultSet.next()){
+				memberDto.setMember_no(resultSet.getInt("member_no"));
+				memberDto.setMember_name(resultSet.getString("member_name"));
+				//memberDto.setMember_level(resultSet.getString("member_level"));
+			}
+			
+			return memberDto;
 		}
 }

@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html class="no-js" lang="ko">
-	<%@ include file="../../module/head.jsp"  %>
+<%@ include file="/module/head.jsp"  %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
 		$('#memberId').focus();
+		$('#insertBtn').click(function(){
+			location.href = "<%=request.getContextPath() %>/member/memberAddForm.jsp";
+		});
 		$('#loginBtn').click(function(){
 			if($('#memberId').val() == '' || !(isNaN($('#memberId').val()))){
 				$('#pwHelper').text('');
@@ -24,34 +27,27 @@
 	});
 </script>
 
-
-<!-- <div style="width: 900px; height: 600px; padding-top: 200px; padding-left: 500px;"> -->
-<div class="center">
-	<form id="LoginForm" action="<%=request.getContextPath()%>/member/login/memberLoginAction.jsp" method="post">
-		<div id="head">
-			회원 로그인
-		</div>
-		
+<div class="login">
+	<form id="LoginForm" action="<%=request.getContextPath()%>/member/login/memberLoginAction.jsp" method="post">	
 		<div>
-			<label>회원 ID : </label>
-			<input type="text" name="memberId" id="memberId"/><br/>
+			<input type="text" name="memberId" id="memberId" class="text" placeholder="ID"/><br/>
 			<span id="idHelper"></span>
 		</div>
 		
 		<div>
-			<label>회원 PW :</label>
-			<input type="password" name="memberPw" id="memberPw"/><br/>
+			<input type="password" name="memberPw" id="memberPw" class="text" placeholder="Password"/><br/>
 			<span id="pwHelper"></span>
 		</div>
 		
-		<div id="btn">
-			<input type="button" id="loginBtn" value="로그인"/> / 
-			<a href="<%=request.getContextPath() %>/member/memberAddForm.jsp">회원가입</a> / 
-			<a href="<%=request.getContextPath() %>/index.jsp">메인 페이지로</a>
+		<div>
+			<!-- <input type="button" id="loginBtn" class="btn" value="로그인"/> -->
+			<a id="loginBtn" class="btn">로그인</a>
+			<a class="btn" href="<%=request.getContextPath() %>/member/memberAddForm.jsp">회원가입</a>
+			<!-- <input type="button" id="insertBtn" class="btn" value="회원가입"/> -->
 		</div>
 		
 	</form>
 </div>
- <%@ include file="../../module/footer.jsp" %>
+<%@ include file="/module/footer.jsp" %>
 </body>
 </html>

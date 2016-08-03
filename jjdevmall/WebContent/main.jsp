@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html class="no-js" lang="ko">
 	<%@ include file="./module/head.jsp"  %>
         <section class="search-section">
@@ -65,7 +65,7 @@
             </div>
         </section>
 
-        <section class="service-section">
+       <!--  <section class="service-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-6 wow fadeInRight animated" data-wow-delay="0.1s">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <section class="new-section">
             <div class="container">

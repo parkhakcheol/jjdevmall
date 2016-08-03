@@ -1,6 +1,6 @@
-<%@page import="javax.websocket.Session"%>
-<%@page import="java.sql.*"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page import="kr.or.ksmart.dao.*" %>
+<%@ page import="kr.or.ksmart.dto.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,56 +10,38 @@
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
-	//·Î±×ÀÎ ÇÏ±âÀ§ÇØ ÀÔ·Â¹ÞÀº È¸¿ø ¾ÆÀÌµð¿Í ÆÐ½º¿öµå¸¦ ¹Þ¾Æ¿É´Ï´Ù.
+	//ë¡œê·¸ì¸ í•˜ê¸°ìœ„í•´ ìž…ë ¥ë°›ì€ íšŒì› ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œë¥¼ ë°›ì•„ì˜µë‹ˆë‹¤.
 	String memberId = request.getParameter("memberId");
 	String memberPw = request.getParameter("memberPw");
-	boolean memberLogin = false;
 	
-	String driver = "com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/jjdevmall?useUnicode=true&characterEncoding=utf-8";
-	String dbUser = "root";
-	String dbPass = "java0000";
+	MemberDao memberDao = new MemberDao();
+	String loginResult = null;
+	MemberDto memberDto = new MemberDto();
 	
-	Connection conn = null;
-	PreparedStatement pstmt1 = null;
-	ResultSet rs = null;
-	try{
-		//µå¶óÀÌ¹ö·Îµù
-		Class.forName(driver);
-		//DB¿¬°á
-		conn = DriverManager.getConnection(url, dbUser, dbPass);
-		
-		//È¸¿øÁ¤º¸¸¦ selectÇÏ¿© id¿Í pw¸¦ ºñ±³ÇÏ¿© 
-		String loginSql = "SELECT member_no, member_id, member_pw FROM member WHERE member_id=? AND member_pw=?";
-		pstmt1 = conn.prepareStatement(loginSql);
-		pstmt1.setString(1, memberId);
-		pstmt1.setString(2, memberPw);
-		
-		rs = pstmt1.executeQuery();
-		System.out.println(pstmt1);
-		
-		// ¸Â´Â È¸¿øÀÌÀÖÀ¸¸é ·Î±×ÀÎÃ³¸®
-		if(rs.next()){
-			//¼¼¼Ç¿¡ ·Î±×ÀÎ Á¤º¸ ÀúÀå
-			memberLogin = true;
-			session.setAttribute("memberId", rs.getString("member_id"));
-			session.setAttribute("memberNo", rs.getString("member_no"));
-			//ÆäÀÌÁö ÀÌµ¿
-			response.sendRedirect(request.getContextPath()+"/member/memberIndex.jsp");
-		}else{
-			//·Î±×ÀÎÀÌ Àß¾ÈµÇ¾ú´Ù¸é È¸¿øµî·ÏÆäÀÌÁö·Î ÀÌµ¿
-			response.sendRedirect(request.getContextPath()+"/member/memberAddForm.jsp");
-		}
-	}finally {
-		// »ç¿ëÇÑ Statement Á¾·á
-		if (pstmt1 != null) try { pstmt1.close(); } catch(SQLException ex) {}
-		
-		if (rs != null) try { rs.close(); } catch(SQLException ex) {}
-		
-		// Ä¿³Ø¼Ç Á¾·á
-		if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+	loginResult = memberDao.memberLoginCheck(memberId, memberPw);
+	
+		// ë§žëŠ” íšŒì›ì´ìžˆìœ¼ë©´ ë¡œê·¸ì¸ì²˜ë¦¬
+	if(loginResult.equals("ë¡œê·¸ì¸ì„±ê³µ")){
+		memberDto = memberDao.memberLogin(memberId);
+		session.setAttribute("memberName", memberDto.getMember_name());
+		session.setAttribute("memberNo", memberDto.getMember_no());
+		//íŽ˜ì´ì§€ ì´ë™
+		response.sendRedirect(request.getContextPath()+"/main.jsp");
+	}else if(loginResult.equals("ì•„ì´ë””ë¶ˆì¼ì¹˜")){
+	%>
+	<script>
+		alert("ì•„ì´ë”” ë¶ˆì¼ì¹˜");
+	</script>
+	<% 
+		response.sendRedirect(request.getContextPath()+"/member/login/memberLogin.jsp");
+	}else if(loginResult.equals("ë¹„ë°€ë²ˆí˜¸ë¶ˆì¼ì¹˜")){
+	%>
+	<script>
+		alert("ë¹„ë°€ë²ˆí˜¸ ë¶ˆì¼ì¹˜");
+	</script>
+	<% 
+		response.sendRedirect(request.getContextPath()+"/member/login/memberLogin.jsp");	
 	}	
-	
 	
 %>
 

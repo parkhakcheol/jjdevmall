@@ -1,28 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<style>
-	div
-	{
-		border: 1px solid #000000;
-		width: 30%;
-		height: 50px;
-		margin: 0 auto;
-		padding-top: 20px;
-	}
-	#btn, #head 
-	{
-		font-size: 25px;
-		font-style: bold;
-		text-align: center;
-	}
-	span
-	{
-		font-size: 10px;
-	}
-</style>
+<html class="no-js" lang="ko">
+<div id="head">
+	<jsp:include page="/module/head.jsp"/>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -58,55 +41,56 @@
 		});
 	});
 </script>
-<title>Insert title here</title>
-</head>
-<body>
+<div class="insert">
 	<form id="memberForm" action="<%=request.getContextPath()%>/member/memberAddAction.jsp" method="post">
 		<div id="head">
-			회원등록화면
+			회원가입
 		</div>
 		
 		<div>
-			<label>회원 ID</label>
-			<input type="text" name="member_id" id="memberId"/><br/>
+			<label>회원 ID : </label>
+			<input type="text" name="member_id" id="memberId" class="text"/><br/>
 			<span id="idHelper"></span>
 		</div>
 		
 		<div>
-			<label>회원 PW</label>
-			<input type="password" name="member_pw" id="memberPw"/><br/>
+			<label>회원 PW : </label>
+			<input type="password" name="member_pw" id="memberPw" class="text"/><br/>
 			<span id="pwHelper"></span>
 		</div>
 		
 		<div>
-			<label>회원 이름</label>
-			<input type="text" name="member_name" id="memberName"/><br/>
+			<label>회원 이름 : </label>
+			<input type="text" name="member_name" id="memberName" class="text"/><br/>
 			<span id="nameHelper"></span>
 		</div>
 		
 		<div>
-			<label>회원 성별</label>
+			<label>회원 성별 </label>
 			<input type="radio" name="member_gender" class="memberGender" value="남"/>남
 			<input type="radio" name="member_gender" class="memberGender" value="여"/>여<br/>
 			<span id="genderHelper"></span>		
 		</div>
 		
 		<div>
-			<label>회원 나이</label>
+			<label>회원 나이 : </label>
 			<input type="text" name="member_age" id="memberAge"/><br/>
 			<span id="ageHelper"></span>
 		</div>
 		
 		<div>
-			<label>회원 주소</label>
+			<label>회원 주소 : </label>
 			<input type="text" name="member_address" id="memberAddr"/><br/>
 			<span id="addrHelper"></span>
 		</div>
 		
-		<div id="btn">
-			<input type="button" id="addBtn" value="회원등록"/>
+		<div>
+			<!-- <input type="button" id="addBtn" value="회원등록"/> -->
+			<a id="addBtn" class="btn">회원등록</a>
 		</div>
 		
 	</form>
+</div>
+<%@ include file="/module/footer.jsp" %>	
 </body>
 </html>

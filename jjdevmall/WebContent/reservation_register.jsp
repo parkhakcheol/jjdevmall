@@ -12,7 +12,7 @@
   <c:param name="url">${currentUrl}</c:param>
 </c:url>
 
-<jsp:useBean id="stl"      class="goodit.common.dao.DBUtil"      scope="page"/>
+<jsp:useBean id="stl"      cl0ass="goodit.common.dao.DBUtil"      scope="page"/>
 <jsp:useBean id="str_util" class="goodit.common.util.StringUtil" scope="page"/>
 
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
  <!-- JQUERY -->
         <script src="<%=request.getContextPath()%>/js/vendor/jquery-1.11.2.min.js"></script>
         <script src="<%=request.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
@@ -22,6 +22,10 @@
             <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
         <![endif]-->
     </head>
+<%
+	String memberName = (String)session.getAttribute("memberName");
+	String level = (String)session.getAttribute("");
+%>
     <body>
 
         <!-- PRELOADER -->
@@ -52,7 +56,17 @@
                                 <li><a href="#">Wishlist</a></li>
                                 <li><a href="#">Cart</a></li>
                                 <li><a href="#">Checkout</a></li>
-                                <li><a href="./member/login/memberLogin.jsp"><i class="pe-7s-lock"></i>로그인/회원가입</a></li>
+                               	<%
+                               	if(memberName == null){
+                               	%>
+                                	<li><a href="<%=request.getContextPath() %>/member/login/memberLogin.jsp"><i class="pe-7s-lock"></i>로그인/회원가입</a></li>
+                                <%
+                               	}else{
+                               	%>	
+                               		<li><a href="<%=request.getContextPath() %>/member/login/memberLogout.jsp"><%=memberName%>님 로그인 / 로그아웃</a></li>
+                               	<%
+                               	}
+                                %>
                             </ul>
                         </div>
                     </div>
@@ -77,7 +91,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            <li class="active"><a href="<%=request.getContextPath()%>/main.jsp">Home</a></li>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">page</a></li>
                             <li><a href="#">shop</a></li>
