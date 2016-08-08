@@ -1,23 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html class="no-js" lang="ko">
-	<%@ include file="./module/head.jsp"  %>
-        <section class="search-section">
-            <div class="container">
-                <div class="row subscribe-from">
-                    <div class="col-md-12">
-                        <form class="form-inline col-md-12 wow fadeInDown animated">
-                            <div class="form-group">
-                                <input type="email" class="form-control subscribe" id="email" placeholder="Search...">
-                                <button class="suscribe-btn" ><i class="pe-7s-search"></i></button>
-                            </div>
-                        </form><!-- end /. form -->
-                    </div>
-                </div><!-- end of/. row -->
-            </div><!-- end of /.container -->
-        </section><!-- end of /.news letter section -->
-
+	
+	<%@ include file="/module/head.jsp"  %>
+        
         <section class="slider-section">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -746,7 +731,7 @@
             </div>
         </section> -->
 
-       <%@ include file="./module/footer.jsp" %>
+       <%@ include file="/module/footer.jsp" %>
 
        
     </body>
