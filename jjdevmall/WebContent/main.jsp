@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	
-	<%@ include file="/module/head.jsp"  %>
-        
+	<jsp:include page="/module/head.jsp"/>
         <section class="slider-section">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -731,8 +730,8 @@
             </div>
         </section> -->
 
-       <%@ include file="/module/footer.jsp" %>
-
+   
+	<jsp:include page="/module/footer.jsp"/>
        
     </body>
 </html>

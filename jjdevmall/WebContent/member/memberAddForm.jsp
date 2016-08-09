@@ -41,56 +41,61 @@
 		});
 	});
 </script>
-<div class="insert">
-	<form id="memberForm" action="<%=request.getContextPath()%>/member/memberAddAction.jsp" method="post">
-		<div id="head">
-			회원가입
+<section class="memberInsert">
+<div class="container">
+	<div class="row">
+		<!-- <div class="col-md-6"> -->
+				<form id="memberForm" action="<%=request.getContextPath()%>/member/memberAddAction.jsp" method="post">
+					
+						<h2>회원가입</h2>
+	
+					<div>
+						<label><h3>I D : </h3></label>
+						<input type="text" name="member_id" id="memberId" class="text"/><br/>
+						<span id="idHelper"></span>
+					</div>
+					
+					<div>
+						<label><h3>P W : </h3></label>
+						<input type="password" name="member_pw" id="memberPw" class="text"/><br/>
+						<span id="pwHelper"></span>
+					</div>
+					
+					<div>
+						<label><h3>이름 : </h3></label>
+						<input type="text" name="member_name" id="memberName" class="text"/><br/>
+						<span id="nameHelper"></span>
+					</div>
+					
+					<div>
+						<label><h3>성별 :</h3> </label>
+						<h3><input type="radio" name="member_gender" class="memberGender" value="남"/>남자
+						<input type="radio" name="member_gender" class="memberGender" value="여"/>여자<br/></h3>
+						<span id="genderHelper"></span>		
+					</div>
+					
+					<div>
+						<label><h3>나이 : </h3></label>
+						<input type="text" name="member_age" class="text" id="memberAge"/><br/>
+						<span id="ageHelper"></span>
+					</div>
+					
+					<div>
+						<label><h3>주소 : </h3></label>
+						<input type="text" name="member_address" class="text" id="memberAddr"/><br/>
+						<span id="addrHelper"></span>
+					</div>
+					
+					<div>
+						<!-- <input type="button" id="addBtn" value="회원등록"/> -->
+						<a id="addBtn" class="btn">회원등록</a>
+					</div>
+			
+				</form>
+			</div>
 		</div>
-		
-		<div>
-			<label>회원 ID : </label>
-			<input type="text" name="member_id" id="memberId" class="text"/><br/>
-			<span id="idHelper"></span>
-		</div>
-		
-		<div>
-			<label>회원 PW : </label>
-			<input type="password" name="member_pw" id="memberPw" class="text"/><br/>
-			<span id="pwHelper"></span>
-		</div>
-		
-		<div>
-			<label>회원 이름 : </label>
-			<input type="text" name="member_name" id="memberName" class="text"/><br/>
-			<span id="nameHelper"></span>
-		</div>
-		
-		<div>
-			<label>회원 성별 </label>
-			<input type="radio" name="member_gender" class="memberGender" value="남"/>남
-			<input type="radio" name="member_gender" class="memberGender" value="여"/>여<br/>
-			<span id="genderHelper"></span>		
-		</div>
-		
-		<div>
-			<label>회원 나이 : </label>
-			<input type="text" name="member_age" id="memberAge"/><br/>
-			<span id="ageHelper"></span>
-		</div>
-		
-		<div>
-			<label>회원 주소 : </label>
-			<input type="text" name="member_address" id="memberAddr"/><br/>
-			<span id="addrHelper"></span>
-		</div>
-		
-		<div>
-			<!-- <input type="button" id="addBtn" value="회원등록"/> -->
-			<a id="addBtn" class="btn">회원등록</a>
-		</div>
-		
-	</form>
-</div>
-<%@ include file="/module/footer.jsp" %>	
+<!-- 	</div> -->
+</section>
+<jsp:include page="/module/footer.jsp"/>	
 </body>
 </html>
